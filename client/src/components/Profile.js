@@ -10,7 +10,7 @@ const Profile = (props) => {
 
     useEffect(() => {
         axios
-            .get(`http://localhost:8080/api/instrumentsbyuser/${username}`, {
+            .get(`http://localhost:3000/api/instrumentsbyuser/${username}`, {
                 withCredentials: true,
             })
             .then((res) => {
