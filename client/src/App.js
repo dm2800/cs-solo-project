@@ -10,15 +10,15 @@ import ChatPage from "./components/ChatPage.js";
 // const socket = socketIO.connect('http://localhost:3000');
 
 const App = () => {
-    const socket = io("http://localhost:8080");
+    // const socket = io("http://localhost:8080");
 
-    useEffect(() => {
-        console.log("hello");
-        socket.on("connect", () => console.log("socket", socket.id));
-        socket.on("connect_error", () => {
-            setTimeout(() => socket.connect(), 5000);
-        });
-    }, []);
+    // useEffect(() => {
+    //     console.log("hello");
+    //     socket.on("connect", () => console.log("socket", socket.id));
+    //     socket.on("connect_error", () => {
+    //         setTimeout(() => socket.connect(), 5000);
+    //     });
+    // }, []);
 
     return (
         <BrowserRouter>

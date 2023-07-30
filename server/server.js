@@ -7,17 +7,6 @@ const cookieParser = require("cookie-parser");
 const app = express();
 const port = 3000;
 
-const server = http.createServer(app);
-const socketIO = require("socket.io")(server, {
-    cors: {
-        origin: "http://localhost:8080",
-    },
-});
-
-// const io = socketIO(server);
-
-//Add this before the app.get() block
-
 app.use(
     cors({
         origin: "http://localhost:8080",
@@ -32,18 +21,6 @@ app.options(
         credentials: true,
     })
 );
-
-socketIO.on("connection", (socket) => {
-    console.log(`⚡: ${socket.id} user just connected!`);
-
-    socket.on("message", (data) => {
-        socketIO.emit("messageResponse", data);
-    });
-
-    socket.on("disconnect", () => {
-        console.log("🔥: A user disconnected");
-    });
-});
 
 
 app.use((req, res, next) => {
