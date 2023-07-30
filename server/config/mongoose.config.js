@@ -1,8 +1,10 @@
 const mongoose = require("mongoose");
 
+const mongo_uri = 'mongodb+srv://dm2800:QdEelIL3rDNVEd5o@cluster0.wyyva3f.mongodb.net/?retryWrites=true&w=majority'
+
 
 mongoose
-    .connect(`mongodb://localhost/instruments`, {
+    .connect(`${mongo_uri}`, {
         useNewUrlParser: true,
         useUnifiedTopology: true,
     })

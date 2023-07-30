@@ -5,8 +5,7 @@ import OneInstrument from "./components/OneInstrument.js";
 import NewInstrument from "./components/NewInstrument.js";
 import LogReg from "./views/LogReg.js";
 import EditInstrument from "./components/EditInstrument.js";
-import { io } from "socket.io-client";
-import ChatPage from "./components/ChatPage.js";
+
 // const socket = socketIO.connect('http://localhost:3000');
 
 const App = () => {
@@ -34,10 +33,6 @@ const App = () => {
                     <Route
                         element={<EditInstrument />}
                         path="/instruments/edit/:id"
-                    />
-                    <Route
-                        element={<ChatPage socket={socket} />}
-                        path="/chat/"
                     />
                 </Routes>
             </div>
