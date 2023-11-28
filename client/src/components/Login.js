@@ -2,12 +2,15 @@ import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { Button, Form, FormControl, FormLabel } from "react-bootstrap";
+import useAppStore from "../AppStore";
 
 const Login = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState(""); 
     const [errorMessage, setErrorMessage] = useState("");
     const navigate = useNavigate(); 
+    const {setLoggedInUserZ} = useAppStore(); 
+
 
     const login = (event) => {
         event.preventDefault();
@@ -27,6 +30,7 @@ const Login = () => {
             .then((res) => {
                 console.log(res, "res");
                 console.log(res.data, "is res data.");
+                // setLoggedInUserZ(res.data); 
                 navigate("/");
             })
             .catch((err) => {
@@ -39,23 +43,23 @@ const Login = () => {
     <div>
 
 
-    <h1>Login</h1>
+    <h2>Login</h2>
     <p className="error-text">{errorMessage ? errorMessage : ""}</p>
-    <Form onSubmit={login}>
-        <Form.Group className="row justify-content-center mb-3">
-            <FormLabel>Email</FormLabel>
+    <Form className="form-container"onSubmit={login}>
+        <Form.Group className="form-group">
+            <FormLabel className="form-label">Email</FormLabel>
             <FormControl
-                className="w-25"
+                className="form-field w-25"
                 type="text"
                 name="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
             />
         </Form.Group>
-        <Form.Group className="row justify-content-center mb-3">
-            <FormLabel>Password</FormLabel>
+        <Form.Group className="form-group row justify-content-center mb-3">
+            <FormLabel className = "form-label">Password</FormLabel>
             <FormControl
-                className="w-25"
+                className="form-field w-25"
                 type="password"
                 name="password"
                 value={password}
@@ -63,7 +67,7 @@ const Login = () => {
             />
         </Form.Group>
         <div className="center">
-            <Button type="submit">Sign In</Button>
+            <Button className = "custom-btn" type="submit">Sign In</Button>
         </div>
     </Form>
 </div>

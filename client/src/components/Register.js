@@ -47,65 +47,65 @@ const Register = (props) => {
 
     return (
         <div>
-            <h1>Register</h1>
+            <h2>Register</h2>
             {confirmReg ? (
                 <h4 style={{ color: "green" }}>{confirmReg}</h4>
             ) : null}
-            <form onSubmit={register}>
-                <Form.Group className="row justify-content-center mb-3">
-                    <FormLabel>Username</FormLabel>
+            <form className = "form-container" onSubmit={register}>
+                <Form.Group className="form-group row justify-content-center mb-3">
+                    <FormLabel className ="form-label">Username</FormLabel>
                     {errors.username ? (
                         <span className="error-text">
                             {errors.username.message}
                         </span>
                     ) : null}
                     <FormControl
-                        className="w-25"
+                        className="form-field w-25"
                         type="text"
                         name="username"
                         value={user.username}
                         onChange={(e) => handleChange(e)}
                     />
                 </Form.Group>
-                <Form.Group className="row justify-content-center mb-3">
-                    <FormLabel>Email</FormLabel>
+                <Form.Group className="form-group row justify-content-center mb-3">
+                    <FormLabel className ="form-label">Email</FormLabel>
                     {errors.email ? (
                         <span className="error-text">
                             {errors.email.message}
                         </span>
                     ) : null}
                     <FormControl
-                        className="w-25"
+                        className="form-field w-25"
                         type="email"
                         name="email"
                         value={user.email}
                         onChange={handleChange}
                     />
                 </Form.Group>
-                <Form.Group className="row justify-content-center mb-3">
-                    <FormLabel>Password</FormLabel>
+                <Form.Group className="form-group row justify-content-center mb-3">
+                    <FormLabel className ="form-label">Password</FormLabel>
                     {errors.password ? (
                         <span className="error-text">
                             {errors.password.message}
                         </span>
                     ) : null}
                     <FormControl
-                        className="w-25"
+                        className="form-field w-25"
                         type="password"
                         name="password"
                         value={user.password}
                         onChange={handleChange}
                     />
                 </Form.Group>
-                <Form.Group className="row justify-content-center mb-3">
-                    <FormLabel>Confirm Password</FormLabel>
+                <Form.Group className="form-group row justify-content-center mb-3">
+                    <FormLabel className ="form-label">Confirm Password</FormLabel>
                     {errors.confirmPassword ? (
                         <span className="error-text">
                             {errors.confirmPassword.message}
                         </span>
                     ) : null}
                     <FormControl
-                        className="w-25"
+                        className="form-field w-25"
                         type="password"
                         name="confirmPassword"
                         value={user.confirmPassword}
@@ -113,7 +113,7 @@ const Register = (props) => {
                     />
                 </Form.Group>
                 <div className="center">
-                    <Button type="submit">Register</Button>
+                    <Button className = "custom-btn" type="submit">Register</Button>
                 </div>
             </form>
         </div>

@@ -3,6 +3,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
 import Button from "react-bootstrap/esm/Button";
+import Header from "./Header";
 
 const OneInstrument = (props) => {
     const [instrument, setInstrument] = useState({});
@@ -35,6 +36,9 @@ const OneInstrument = (props) => {
     };
 
     return (
+        <>
+        <Header/>
+        
         <div className="single-container">
             <div className="single-card">
                 <div className="inst-title">
@@ -53,11 +57,11 @@ const OneInstrument = (props) => {
                     <Button onClick={deleteInstrument}>Delete</Button>
 
                     </div>
-                    <br></br>
-                    <Link style ={{textDecoration: 'none'}} to="/">Home</Link>
                 </div>
             </div>
         </div>
+        
+        </>
     );
 };
 

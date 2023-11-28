@@ -3,6 +3,8 @@ import axios from "axios";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import Form from "./Form";
 import Button from "react-bootstrap/esm/Button";
+import useAppStore from "../AppStore";
+import Header from "./Header";
 
 //axios, useEffect, useState, Link
 
@@ -23,6 +25,8 @@ const NewInstrument = (props) => {
 
     const navigate = useNavigate();
 
+    const { LoggedInUserZ } = useAppStore();
+
     const newSubmitHandler = (e) => {
         e.preventDefault();
         axios
@@ -32,9 +36,8 @@ const NewInstrument = (props) => {
                     "Access-Control-Allow-Origin": "http://localhost:8080",
                     "Access-Control-Allow-Headers": "*",
                     "Access-Control-Allow-Methods": "*",
-                    
                 },
-                crossorigin: true
+                crossorigin: true,
             })
             .then((res) => {
                 console.log(res);
@@ -76,21 +79,10 @@ const NewInstrument = (props) => {
     };
 
     return (
-            <div className="new-inst-container">
-                <header>
-                    <section class="section-intro bg-primary padding-y-lg">
-                        <div class="container">
-                            <h1>GearShare</h1>
-                            <h6>Lend & borrow your favorite gear.</h6>
-                        </div>
-                    </section>
-                    <Link to={"/"}>
-                        <Button variant="primary">Home</Button>
-                    </Link>
-                </header>
-                <br></br>
+        <>
+            <Header />
 
-                {/* new Form component  */}
+            <div className="new-inst-container">
                 <Form
                     submitHandler={newSubmitHandler}
                     instrument={newInstrument}
@@ -99,6 +91,7 @@ const NewInstrument = (props) => {
                     onChangeHandler={onChangeHandler}
                 />
             </div>
+        </>
     );
 };
 

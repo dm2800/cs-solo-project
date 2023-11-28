@@ -5,6 +5,9 @@ import { Link, useNavigate, Navigate } from "react-router-dom";
 import "../App.css";
 import { bold } from "colorette";
 import { Button } from "react-bootstrap";
+import Header from "./Header";
+import Navbar from "./Navbar";
+import useAppStore from "../AppStore";
 
 const Home = () => {
     const [instrumentList, setInstrumentList] = useState([]);
@@ -12,6 +15,8 @@ const Home = () => {
     const [loggedInUser, setLoggedInUser] = useState({});
 
     const navigate = useNavigate();
+
+    const {LoggedInUserZ, setLoggedInUserZ} = useAppStore(); 
 
     useEffect(() => {
         axios
@@ -25,18 +30,19 @@ const Home = () => {
                 console.log(err);
             });
     }, []);
-
+    
     useEffect(() => {
         axios
             .get("http://localhost:3000/api/users", { withCredentials: true })
             .then((res) => {
                 console.log("user res", res);
                 console.log("user res data", res.data);
-                setLoggedInUser(res.data);
+                setLoggedInUserZ(res.data);
+                // loggedInUserZ(res.data);
             })
             .catch((err) => {
                 console.log("get users error", err);
-                setLoggedInUser(false);
+                setLoggedInUserZ(false);
             });
     }, []);
 
@@ -62,6 +68,7 @@ const Home = () => {
 
     const instrumentArray = instrumentList.map((instrument) => {
         return (
+            <Link to = {`/instruments/${instrument._id}`}>
             <div className="card">
                 <div className="card-text">
                     <Link
@@ -70,29 +77,20 @@ const Home = () => {
                     >
                         {instrument.title}
                     </Link>
-                    <h6>${instrument.price}/day</h6>
+                    <p className = "inst-price">${instrument.price}/day</p>
                 </div>
                 <Link to={`/instruments/${instrument._id}`}><img className="inst-img" src={instrument.image}></img></Link>
             </div>
+            </Link>
         );
     });
 
     return (
         <div>
-            <div className="logo-bar">
-                <h1 className="logo">GearShare</h1>
-                <h6>Lend & borrow your favorite gear.</h6>
-            </div>
-            <div className="user-welcome">
-                <h4>
-                {loggedInUser && `Welcome, ${loggedInUser.username}`}
-                </h4>
-            </div>
-            <div className="top-links">
-                <Link style={{textDecoration: 'none'}} to={`/login`}>Login/Register</Link>
-                <Link style={{textDecoration: 'none'}} to={`/create`}>List an instrument</Link>
-                <Button onClick={logout}>Logout</Button>
-            </div>
+
+            <Header />
+            <Navbar logout = {logout}/>
+            
 
             <div className="feed">
                 <div style={{ fontSize: "20px" }}>{instrumentArray}</div>
