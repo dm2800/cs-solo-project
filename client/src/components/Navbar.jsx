@@ -14,7 +14,8 @@ const Navbar = ({logout}) => {
                 <Link className = "navbar-link" style={{ textDecoration: "none" }} to={`/create`}>
                     List Instrument
                 </Link>
-                <button className = "custom-btn" onClick={logout}>Logout  {String(LoggedInUserZ.username).charAt(0).toUpperCase()}{String(LoggedInUserZ.username).slice(1).toLowerCase()}</button>
+                {LoggedInUserZ && <button className = "custom-btn" onClick={logout}>Logout  {String(LoggedInUserZ.username).charAt(0).toUpperCase()}{String(LoggedInUserZ.username).slice(1).toLowerCase()}</button>}
+              
             </div>
   )
 }
